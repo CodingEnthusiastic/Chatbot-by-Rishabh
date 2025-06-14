@@ -152,7 +152,9 @@ export default function ChatInterface() {
     try {
       // Use Gemini API directly
       const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${GEMINI_API_KEY}`
-
+      console.log(API_URL);
+      let check=true;
+      console.log(check);
       const requestBody = {
         contents: [
           ...messages.map((msg) => ({
@@ -168,7 +170,7 @@ export default function ChatInterface() {
           parts: [{ text: systemInstruction }],
         },
       }
-
+      console.log(check);
       const response = await fetch(API_URL, {
         method: "POST",
         headers: {
@@ -176,11 +178,11 @@ export default function ChatInterface() {
         },
         body: JSON.stringify(requestBody),
       })
-
+      console.log(check);
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`)
       }
-
+      console.log(check);
       const data = await response.json()
 
       if (
@@ -197,7 +199,7 @@ export default function ChatInterface() {
         if (mode === "default" && containsHindi(aiResponse)) {
           englishContent = await getEnglishVersion(aiResponse)
         }
-
+        console.log(check);
         // Add AI response
         const aiMessage = {
           role: "assistant",
@@ -205,19 +207,19 @@ export default function ChatInterface() {
           id: Date.now().toString(),
           englishContent: englishContent,
         }
-
+        console.log(check);
         setModeMessages((prev) => ({
           ...prev,
           [mode]: [...(prev[mode] || []), aiMessage],
         }))
-
+        console.log(check);
         if (isVoiceOutput) {
           speakText(aiResponse, englishContent)
         }
       }
     } catch (error) {
       console.error("Error fetching response:", error)
-
+     // console.log(check);
       // Add error message
       const errorMessage = {
         role: "assistant",
