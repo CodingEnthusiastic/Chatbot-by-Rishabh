@@ -25,6 +25,7 @@ interface Message {
 }
 
 // Gemini API configuration
+
 const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY
 const MODEL_NAME = "gemini-1.5-flash"
 
@@ -153,6 +154,7 @@ export default function ChatInterface() {
       // Use Gemini API directly
       const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${GEMINI_API_KEY}`
       console.log(API_URL);
+      console.log(process.env);
       let check=true;
       console.log(check);
       const requestBody = {
