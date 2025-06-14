@@ -26,7 +26,7 @@ interface Message {
 
 // Gemini API configuration
 
-const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY
+const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_GENERATIVE_AI_API_KEY
 const MODEL_NAME = "gemini-1.5-flash"
 
 export default function ChatInterface() {
